@@ -267,8 +267,7 @@
                 <div class="text-center space-y-4">
                     <div
                         class="w-48 h-48 mx-auto mb-6 rounded-full border-4 border-outline-variant overflow-hidden shadow-md">
-                        <img alt="Rizky Adi Putra" class="w-full h-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw9r6Ylmnmsto2N2U_7WilevjYBGvyhMzVT0sn1zl-pxTGEEmazAHuZyFXJmdn1ut39D5AFHHEmNHDuz7ZNAXrVA6bX_16Wq2kEVdqPRChAnKhGGyMbbPOzmqKjoFoxV85m01NmJ-FYj3iBt1_6YDp6iGCfxg4kp5ffZ0A_WWm_30_DTkceeaGB4GhUOrNqfQrt2pZh_zIy7j6HCEAQnKMbOYHGndE3WiIkI_iiiNVAyfCmhMX22zQFHZUGAtt3_GsU_SDK5X0K_4" />
+                        <img alt="Rizky Adi Putra" class="w-full h-full object-cover" src="foto/12.JPG" />
                     </div>
                     <h3 class="font-headline-md text-headline-md text-primary">Rizky Adi Putra</h3>
                     <p class="font-body-md text-body-md text-on-surface-variant">Putra Pertama dari Bapak Sumarsono
@@ -280,8 +279,7 @@
                 <div class="text-center space-y-4">
                     <div
                         class="w-48 h-48 mx-auto mb-6 rounded-full border-4 border-outline-variant overflow-hidden shadow-md">
-                        <img alt="Aina Aisyah Hasan Nurdin" class="w-full h-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhrJPhv8CEXVotaLxTRH1hZ7HOqVEheG8OLGnMPHhr36esrD4CUaliYQ8wS5yh4zk4yh8q-D4s-bXh8mY71Xnpzrq0UJWL656yqT8iK33tYyUBh4fXpwktEjfJIOA8hW3e8UBHgY4KhY_lTYQZkOTKTAPMzxB_dE7dODVFpC2w3emoV3S5IzyxGI6FaOyEtw5B0_36zB8BieLWYrGwxwQyJIFHkLCeI3BZsBPZddPjkTgBhQGHeZ5rz7325XxINpAJoa4Fp4cRBx4" />
+                        <img alt="Aina Aisyah Hasan Nurdin" class="w-full h-full object-cover" src="foto/4.JPG" />
                     </div>
                     <h3 class="font-headline-md text-headline-md text-primary">Aina Aisyah Hasan Nurdin</h3>
                     <p class="font-body-md text-body-md text-on-surface-variant">Putri Pertama dari Bapak Hasan Nurdin
@@ -680,7 +678,7 @@
             // 1. Get from query parameter first (e.g. ?to=Agus or ?=Agus)
             const urlParams = new URLSearchParams(window.location.search);
             let toParam = urlParams.get('to') || urlParams.get('guest') || urlParams.get('nama') || urlParams.get('u');
-            
+
             if (!toParam) {
                 // Support keyless query parameter (e.g., ?=agus or ?agus)
                 const search = window.location.search;
@@ -713,9 +711,9 @@
                     if (lastPart) {
                         const lowerPart = lastPart.toLowerCase();
                         // Ensure it's not a layout/script file or common project folder names
-                        if (!lastPart.endsWith('.html') && 
-                            !lastPart.endsWith('.php') && 
-                            lowerPart !== 'wedding' && 
+                        if (!lastPart.endsWith('.html') &&
+                            !lastPart.endsWith('.php') &&
+                            lowerPart !== 'wedding' &&
                             lowerPart !== 'wedding-invitation') {
                             guest = decodeURIComponent(lastPart.replace(/\+/g, ' '));
                         }
