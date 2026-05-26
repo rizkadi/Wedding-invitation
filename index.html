@@ -677,22 +677,49 @@
         function getGuestName() {
             let guest = '';
 
-            // 1. Get from path segment (e.g. /Agus+Hasanudin)
-            const pathParts = window.location.pathname.split('/').filter(Boolean);
-            if (pathParts.length > 0) {
-                const lastPart = pathParts[pathParts.length - 1];
-                // Ensure it's not a layout/script file
-                if (!lastPart.endsWith('.html') && !lastPart.endsWith('.php') && lastPart.toLowerCase() !== 'wedding') {
-                    guest = decodeURIComponent(lastPart.replace(/\+/g, ' '));
+            // 1. Get from query parameter first (e.g. ?to=Agus or ?=Agus)
+            const urlParams = new URLSearchParams(window.location.search);
+            let toParam = urlParams.get('to') || urlParams.get('guest') || urlParams.get('nama') || urlParams.get('u');
+            
+            if (!toParam) {
+                // Support keyless query parameter (e.g., ?=agus or ?agus)
+                const search = window.location.search;
+                if (search && search.startsWith('?')) {
+                    const query = search.substring(1);
+                    if (query.startsWith('=')) {
+                        toParam = query.substring(1);
+                    } else if (!query.includes('=')) {
+                        toParam = query;
+                    }
                 }
             }
 
-            // 2. Get from query parameter (e.g. ?to=Agus+Hasanudin) as fallback
+            if (toParam) {
+                guest = decodeURIComponent(toParam.replace(/\+/g, ' '));
+            }
+
+            // 2. Get from path segment (e.g. /Agus+Hasanudin) as fallback
             if (!guest) {
-                const urlParams = new URLSearchParams(window.location.search);
-                const toParam = urlParams.get('to') || urlParams.get('guest') || urlParams.get('nama') || urlParams.get('u');
-                if (toParam) {
-                    guest = toParam;
+                const pathParts = window.location.pathname.split('/').filter(Boolean);
+                if (pathParts.length > 0) {
+                    const isGitHubPages = window.location.hostname.endsWith('github.io');
+                    let lastPart = pathParts[pathParts.length - 1];
+
+                    // If on github.io and there's only 1 path segment, it's the repo name (base path), not a guest name
+                    if (isGitHubPages && pathParts.length === 1) {
+                        lastPart = '';
+                    }
+
+                    if (lastPart) {
+                        const lowerPart = lastPart.toLowerCase();
+                        // Ensure it's not a layout/script file or common project folder names
+                        if (!lastPart.endsWith('.html') && 
+                            !lastPart.endsWith('.php') && 
+                            lowerPart !== 'wedding' && 
+                            lowerPart !== 'wedding-invitation') {
+                            guest = decodeURIComponent(lastPart.replace(/\+/g, ' '));
+                        }
+                    }
                 }
             }
 
