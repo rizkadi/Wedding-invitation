@@ -14,6 +14,7 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -164,6 +165,45 @@
         .scrollbar-thin::-webkit-scrollbar-thumb:hover {
             background: #827470;
         }
+
+        /* Floral background ornaments and animations */
+        @keyframes float-slow {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(3deg);
+            }
+        }
+
+        @keyframes float-slow-reverse {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(12px) rotate(-3deg);
+            }
+        }
+
+        .animate-float-slow {
+            animation: float-slow 15s ease-in-out infinite;
+        }
+
+        .animate-float-slow-reverse {
+            animation: float-slow-reverse 18s ease-in-out infinite;
+        }
+
+        .floral-decor {
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+        }
     </style>
 </head>
 
@@ -223,6 +263,332 @@
         <section
             class="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center text-center px-margin-mobile relative overflow-hidden fade-in py-16"
             id="cover">
+            <!-- Left-top floral corner -->
+            <div
+                class="floral-decor absolute top-0 left-0 w-40 h-40 md:w-[28rem] md:h-[28rem] text-secondary/25 -translate-x-8 -translate-y-8 animate-float-slow">
+                <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <defs>
+                        <radialGradient id="lily-glow-lt" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#5d4037" stop-opacity="0.35" />
+                            <stop offset="60%" stop-color="#75584d" stop-opacity="0.12" />
+                            <stop offset="100%" stop-color="#ffdbd0" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
+
+                    <!-- Background soft leaf twigs branching out (watercolor effect) -->
+                    <!-- Twig 1 (Top Right) -->
+                    <path d="M 50,50 Q 150,20 220,10" stroke="currentColor" stroke-width="1.2" opacity="0.35" />
+                    <path d="M 100,35 Q 120,15 130,20 Q 115,35 100,35 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+                    <path d="M 140,27 Q 160,7 170,12 Q 155,27 140,27 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+                    <path d="M 180,18 Q 200,-2 210,3 Q 195,18 180,18 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+
+                    <!-- Twig 2 (Bottom Left) -->
+                    <path d="M 50,50 Q 20,150 10,220" stroke="currentColor" stroke-width="1.2" opacity="0.35" />
+                    <path d="M 35,100 Q 15,120 20,130 Q 35,115 35,100 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+                    <path d="M 27,140 Q 7,160 12,170 Q 27,155 27,140 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+                    <path d="M 18,180 Q -2,200 3,210 Q 18,195 18,180 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+
+                    <!-- Twig 3 (Center Diagonal) -->
+                    <path d="M 50,50 Q 120,120 180,180" stroke="currentColor" stroke-width="1.5" opacity="0.3" />
+                    <path d="M 90,90 Q 120,80 130,95 Q 110,110 90,90 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+                    <path d="M 130,130 Q 160,120 170,135 Q 150,150 130,130 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+
+                    <!-- Lily Flower 1 (Main Corner Lily) -->
+                    <g transform="translate(60,60)">
+                        <!-- Petals -->
+                        <path d="M 0,0 C -15,-30 -30,-60 -10,-80 C 10,-60 15,-30 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -10,-70" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 25,-25 55,-40 68,-22 C 55,-5 25,-10 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 55,-25" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 35,10 65,30 58,48 C 40,48 20,25 0,0" fill="currentColor" fill-opacity="0.12"
+                            stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 50,25" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 15,35 20,65 2,75 C -15,60 -10,30 0,0" fill="currentColor" fill-opacity="0.12"
+                            stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 5,60" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C -25,25 -55,30 -65,12 C -50,-5 -25,-10 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -50,15" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C -35,-10 -60,-35 -48,-48 C -30,-40 -15,-20 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -45,-30" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+
+                        <!-- Soft shading glow -->
+                        <circle cx="0" cy="0" r="25" fill="url(#lily-glow-lt)" />
+
+                        <!-- Distinct Stamens matching the image -->
+                        <g stroke="#442a22" stroke-width="1.8" fill="#442a22">
+                            <path d="M 0,0 Q 10,-30 20,-48" fill="none" />
+                            <path d="M 16,-50 L 24,-46" stroke-width="3" />
+                            <path d="M 0,0 Q 25,-10 40,-15" fill="none" />
+                            <path d="M 37,-18 L 43,-12" stroke-width="3" />
+                            <path d="M 0,0 Q 25,15 32,32" fill="none" />
+                            <path d="M 29,34 L 35,30" stroke-width="3" />
+                            <path d="M 0,0 Q -5,30 -10,42" fill="none" />
+                            <path d="M -13,40 L -7,44" stroke-width="3" />
+                            <path d="M 0,0 Q -25,10 -38,5" fill="none" />
+                            <path d="M -41,2 L -35,8" stroke-width="3" />
+                            <path d="M 0,0 Q -20,-20 -28,-38" fill="none" />
+                            <path d="M -31,-36 L -25,-40" stroke-width="3" />
+
+                            <!-- Pistil -->
+                            <path d="M 0,0 Q 3,-25 5,-42" stroke="#5d4037" stroke-width="2" fill="none" />
+                            <circle cx="5" cy="-42" r="2.5" fill="#5d4037" />
+                        </g>
+                    </g>
+
+                    <!-- Lily Flower 2 (Top-Right Lily) -->
+                    <g transform="translate(130,45) rotate(20) scale(0.85)">
+                        <path d="M 0,0 C -15,-30 -30,-60 -10,-80 C 10,-60 15,-30 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -10,-70" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 25,-25 55,-40 68,-22 C 55,-5 25,-10 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 55,-25" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 35,10 65,30 58,48 C 40,48 20,25 0,0" fill="currentColor" fill-opacity="0.12"
+                            stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 50,25" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 15,35 20,65 2,75 C -15,60 -10,30 0,0" fill="currentColor" fill-opacity="0.12"
+                            stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 5,60" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C -25,25 -55,30 -65,12 C -50,-5 -25,-10 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -50,15" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C -35,-10 -60,-35 -48,-48 C -30,-40 -15,-20 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -45,-30" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <circle cx="0" cy="0" r="22" fill="url(#lily-glow-lt)" />
+                        <g stroke="#442a22" stroke-width="1.5" fill="#442a22">
+                            <path d="M 0,0 Q 10,-25 18,-38" fill="none" />
+                            <path d="M 15,-40 L 21,-36" stroke-width="2.5" />
+                            <path d="M 0,0 Q 20,-8 32,-12" fill="none" />
+                            <path d="M 29,-15 L 35,-9" stroke-width="2.5" />
+                            <path d="M 0,0 Q 20,12 25,25" fill="none" />
+                            <path d="M 22,27 L 28,23" stroke-width="2.5" />
+                            <path d="M 0,0 Q -4,25 -8,32" fill="none" />
+                            <path d="M -11,30 L -5,34" stroke-width="2.5" />
+                            <path d="M 0,0 Q -20,8 -28,4" fill="none" />
+                            <path d="M -31,1 L -25,7" stroke-width="2.5" />
+                            <path d="M 0,0 Q -16,-16 -22,-28" fill="none" />
+                            <path d="M -25,-26 L -19,-30" stroke-width="2.5" />
+                        </g>
+                    </g>
+
+                    <!-- Lily Flower 3 (Bottom-Left Lily) -->
+                    <g transform="translate(45,130) rotate(-20) scale(0.85)">
+                        <path d="M 0,0 C -15,-30 -30,-60 -10,-80 C 10,-60 15,-30 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -10,-70" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 25,-25 55,-40 68,-22 C 55,-5 25,-10 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 55,-25" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 35,10 65,30 58,48 C 40,48 20,25 0,0" fill="currentColor" fill-opacity="0.12"
+                            stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 50,25" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 15,35 20,65 2,75 C -15,60 -10,30 0,0" fill="currentColor" fill-opacity="0.12"
+                            stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 5,60" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C -25,25 -55,30 -65,12 C -50,-5 -25,-10 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -50,15" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C -35,-10 -60,-35 -48,-48 C -30,-40 -15,-20 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -45,-30" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <circle cx="0" cy="0" r="22" fill="url(#lily-glow-lt)" />
+                        <g stroke="#442a22" stroke-width="1.5" fill="#442a22">
+                            <path d="M 0,0 Q 10,-25 18,-38" fill="none" />
+                            <path d="M 15,-40 L 21,-36" stroke-width="2.5" />
+                            <path d="M 0,0 Q 20,-8 32,-12" fill="none" />
+                            <path d="M 29,-15 L 35,-9" stroke-width="2.5" />
+                            <path d="M 0,0 Q 20,12 25,25" fill="none" />
+                            <path d="M 22,27 L 28,23" stroke-width="2.5" />
+                            <path d="M 0,0 Q -4,25 -8,32" fill="none" />
+                            <path d="M -11,30 L -5,34" stroke-width="2.5" />
+                            <path d="M 0,0 Q -20,8 -28,4" fill="none" />
+                            <path d="M -31,1 L -25,7" stroke-width="2.5" />
+                            <path d="M 0,0 Q -16,-16 -22,-28" fill="none" />
+                            <path d="M -25,-26 L -19,-30" stroke-width="2.5" />
+                        </g>
+                    </g>
+
+                    <!-- Lily Bud 1 -->
+                    <g transform="translate(190,100) rotate(45) scale(0.7)">
+                        <path d="M 0,0 C 15,-20 15,-40 0,-60 C -15,-40 -15,-20 0,0 Z" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 0,-60" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M -8,0 C -5,10 5,10 8,0 C 5,-5 -5,-5 -8,0 Z" fill="currentColor" fill-opacity="0.2"
+                            stroke="currentColor" stroke-width="1" />
+                    </g>
+                </svg>
+            </div>
+            <!-- Right-bottom floral corner -->
+            <div
+                class="floral-decor absolute bottom-0 right-0 w-40 h-40 md:w-[28rem] md:h-[28rem] text-secondary/25 translate-x-8 translate-y-8 rotate-180 animate-float-slow-reverse">
+                <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                    <defs>
+                        <radialGradient id="lily-glow-rb" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#5d4037" stop-opacity="0.35" />
+                            <stop offset="60%" stop-color="#75584d" stop-opacity="0.12" />
+                            <stop offset="100%" stop-color="#ffdbd0" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
+
+                    <!-- Background soft leaf twigs branching out -->
+                    <path d="M 50,50 Q 150,20 220,10" stroke="currentColor" stroke-width="1.2" opacity="0.35" />
+                    <path d="M 100,35 Q 120,15 130,20 Q 115,35 100,35 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+                    <path d="M 140,27 Q 160,7 170,12 Q 155,27 140,27 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+                    <path d="M 180,18 Q 200,-2 210,3 Q 195,18 180,18 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+
+                    <path d="M 50,50 Q 20,150 10,220" stroke="currentColor" stroke-width="1.2" opacity="0.35" />
+                    <path d="M 35,100 Q 15,120 20,130 Q 35,115 35,100 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+                    <path d="M 27,140 Q 7,160 12,170 Q 27,155 27,140 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+                    <path d="M 18,180 Q -2,200 3,210 Q 18,195 18,180 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+
+                    <path d="M 50,50 Q 120,120 180,180" stroke="currentColor" stroke-width="1.5" opacity="0.3" />
+                    <path d="M 90,90 Q 120,80 130,95 Q 110,110 90,90 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke="currentColor" stroke-width="0.8" opacity="0.4" />
+                    <path d="M 130,130 Q 160,120 170,135 Q 150,150 130,130 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke-width="0.8" opacity="0.4" />
+
+                    <!-- Lily Flower 1 (Main Corner Lily) -->
+                    <g transform="translate(60,60)">
+                        <path d="M 0,0 C -15,-30 -30,-60 -10,-80 C 10,-60 15,-30 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -10,-70" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 25,-25 55,-40 68,-22 C 55,-5 25,-10 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 55,-25" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 35,10 65,30 58,48 C 40,48 20,25 0,0" fill="currentColor" fill-opacity="0.12"
+                            stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 50,25" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 15,35 20,65 2,75 C -15,60 -10,30 0,0" fill="currentColor" fill-opacity="0.12"
+                            stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 5,60" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C -25,25 -55,30 -65,12 C -50,-5 -25,-10 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -50,15" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C -35,-10 -60,-35 -48,-48 C -30,-40 -15,-20 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -45,-30" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <circle cx="0" cy="0" r="25" fill="url(#lily-glow-rb)" />
+                        <g stroke="#442a22" stroke-width="1.8" fill="#442a22">
+                            <path d="M 0,0 Q 10,-30 20,-48" fill="none" />
+                            <path d="M 16,-50 L 24,-46" stroke-width="3" />
+                            <path d="M 0,0 Q 25,-10 40,-15" fill="none" />
+                            <path d="M 37,-18 L 43,-12" stroke-width="3" />
+                            <path d="M 0,0 Q 25,15 32,32" fill="none" />
+                            <path d="M 29,34 L 35,30" stroke-width="3" />
+                            <path d="M 0,0 Q -5,30 -10,42" fill="none" />
+                            <path d="M -13,40 L -7,44" stroke-width="3" />
+                            <path d="M 0,0 Q -25,10 -38,5" fill="none" />
+                            <path d="M -41,2 L -35,8" stroke-width="3" />
+                            <path d="M 0,0 Q -20,-20 -28,-38" fill="none" />
+                            <path d="M -31,-36 L -25,-40" stroke-width="3" />
+                            <path d="M 0,0 Q 3,-25 5,-42" stroke="#5d4037" stroke-width="2" fill="none" />
+                            <circle cx="5" cy="-42" r="2.5" fill="#5d4037" />
+                        </g>
+                    </g>
+
+                    <!-- Lily Flower 2 -->
+                    <g transform="translate(130,45) rotate(20) scale(0.85)">
+                        <path d="M 0,0 C -15,-30 -30,-60 -10,-80 C 10,-60 15,-30 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -10,-70" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 25,-25 55,-40 68,-22 C 55,-5 25,-10 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 55,-25" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 35,10 65,30 58,48 C 40,48 20,25 0,0" fill="currentColor" fill-opacity="0.12"
+                            stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 50,25" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 15,35 20,65 2,75 C -15,60 -10,30 0,0" fill="currentColor" fill-opacity="0.12"
+                            stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 5,60" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C -25,25 -55,30 -65,12 C -50,-5 -25,-10 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -50,15" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C -35,-10 -60,-35 -48,-48 C -30,-40 -15,-20 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -45,-30" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <circle cx="0" cy="0" r="22" fill="url(#lily-glow-rb)" />
+                        <g stroke="#442a22" stroke-width="1.5" fill="#442a22">
+                            <path d="M 0,0 Q 10,-25 18,-38" fill="none" />
+                            <path d="M 15,-40 L 21,-36" stroke-width="2.5" />
+                            <path d="M 0,0 Q 20,-8 32,-12" fill="none" />
+                            <path d="M 29,-15 L 35,-9" stroke-width="2.5" />
+                            <path d="M 0,0 Q 20,12 25,25" fill="none" />
+                            <path d="M 22,27 L 28,23" stroke-width="2.5" />
+                            <path d="M 0,0 Q -4,25 -8,32" fill="none" />
+                            <path d="M -11,30 L -5,34" stroke-width="2.5" />
+                            <path d="M 0,0 Q -20,8 -28,4" fill="none" />
+                            <path d="M -31,1 L -25,7" stroke-width="2.5" />
+                            <path d="M 0,0 Q -16,-16 -22,-28" fill="none" />
+                            <path d="M -25,-26 L -19,-30" stroke-width="2.5" />
+                        </g>
+                    </g>
+
+                    <!-- Lily Flower 3 -->
+                    <g transform="translate(45,130) rotate(-20) scale(0.85)">
+                        <path d="M 0,0 C -15,-30 -30,-60 -10,-80 C 10,-60 15,-30 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -10,-70" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 25,-25 55,-40 68,-22 C 55,-5 25,-10 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 55,-25" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 35,10 65,30 58,48 C 40,48 20,25 0,0" fill="currentColor" fill-opacity="0.12"
+                            stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 50,25" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C 15,35 20,65 2,75 C -15,60 -10,30 0,0" fill="currentColor" fill-opacity="0.12"
+                            stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 5,60" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C -25,25 -55,30 -65,12 C -50,-5 -25,-10 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -50,15" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M 0,0 C -35,-10 -60,-35 -48,-48 C -30,-40 -15,-20 0,0" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L -45,-30" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <circle cx="0" cy="0" r="22" fill="url(#lily-glow-rb)" />
+                        <g stroke="#442a22" stroke-width="1.5" fill="#442a22">
+                            <path d="M 0,0 Q 10,-25 18,-38" fill="none" />
+                            <path d="M 15,-40 L 21,-36" stroke-width="2.5" />
+                            <path d="M 0,0 Q 20,-8 32,-12" fill="none" />
+                            <path d="M 29,-15 L 35,-9" stroke-width="2.5" />
+                            <path d="M 0,0 Q 20,12 25,25" fill="none" />
+                            <path d="M 22,27 L 28,23" stroke-width="2.5" />
+                            <path d="M 0,0 Q -4,25 -8,32" fill="none" />
+                            <path d="M -11,30 L -5,34" stroke-width="2.5" />
+                            <path d="M 0,0 Q -20,8 -28,4" fill="none" />
+                            <path d="M -31,1 L -25,7" stroke-width="2.5" />
+                            <path d="M 0,0 Q -16,-16 -22,-28" fill="none" />
+                            <path d="M -25,-26 L -19,-30" stroke-width="2.5" />
+                        </g>
+                    </g>
+
+                    <!-- Lily Bud -->
+                    <g transform="translate(190,100) rotate(45) scale(0.7)">
+                        <path d="M 0,0 C 15,-20 15,-40 0,-60 C -15,-40 -15,-20 0,0 Z" fill="currentColor"
+                            fill-opacity="0.12" stroke="currentColor" stroke-width="1" />
+                        <path d="M 0,0 L 0,-60" stroke="#75584d" stroke-width="0.8" opacity="0.4" />
+                        <path d="M -8,0 C -5,10 5,10 8,0 C 5,-5 -5,-5 -8,0 Z" fill="currentColor" fill-opacity="0.2"
+                            stroke="currentColor" stroke-width="1" />
+                    </g>
+                </svg>
+            </div>
             <div class="z-10">
                 <span
                     class="font-label-caps text-label-caps uppercase tracking-[0.3em] text-on-surface-variant mb-6 block">The
@@ -247,7 +613,35 @@
 
         <!-- Section 2: Quote Section -->
         <section
-            class="py-32 px-margin-mobile md:px-margin-desktop text-center bg-tertiary-fixed/30 border-y border-outline-variant/30">
+            class="py-32 px-margin-mobile md:px-margin-desktop text-center bg-tertiary-fixed/30 border-y border-outline-variant/30 relative overflow-hidden">
+            <!-- Left side twig for Quote -->
+            <div
+                class="floral-decor absolute left-0 top-1/2 -translate-y-1/2 w-20 md:w-36 h-auto text-secondary/12 -translate-x-4 md:-translate-x-6 rotate-45 animate-float-slow">
+                <svg viewBox="0 0 80 120" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-full h-full">
+                    <path d="M 10,110 Q 50,60 20,10" stroke-width="1.5" />
+                    <path d="M 17,90 Q 35,80 40,90 Z" fill="currentColor" fill-opacity="0.05" />
+                    <path d="M 25,65 Q 5,55 8,70 Z" fill="currentColor" fill-opacity="0.05" />
+                    <path d="M 28,40 Q 48,35 48,48 Z" fill="currentColor" fill-opacity="0.05" />
+                    <path d="M 23,15 Q 2,10 5,25 Z" fill="currentColor" fill-opacity="0.05" />
+                    <circle cx="45" cy="65" r="1.5" fill="currentColor" />
+                    <circle cx="15" cy="35" r="1.5" fill="currentColor" />
+                </svg>
+            </div>
+            <!-- Right side twig for Quote -->
+            <div
+                class="floral-decor absolute right-0 top-1/2 -translate-y-1/2 w-20 md:w-36 h-auto text-secondary/12 translate-x-4 md:translate-x-6 -rotate-45 scale-x-[-1] animate-float-slow-reverse">
+                <svg viewBox="0 0 80 120" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-full h-full">
+                    <path d="M 10,110 Q 50,60 20,10" stroke-width="1.5" />
+                    <path d="M 17,90 Q 35,80 40,90 Z" fill="currentColor" fill-opacity="0.05" />
+                    <path d="M 25,65 Q 5,55 8,70 Z" fill="currentColor" fill-opacity="0.05" />
+                    <path d="M 28,40 Q 48,35 48,48 Z" fill="currentColor" fill-opacity="0.05" />
+                    <path d="M 23,15 Q 2,10 5,25 Z" fill="currentColor" fill-opacity="0.05" />
+                    <circle cx="45" cy="65" r="1.5" fill="currentColor" />
+                    <circle cx="15" cy="35" r="1.5" fill="currentColor" />
+                </svg>
+            </div>
             <div class="max-w-2xl mx-auto italic">
                 <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
                     "Pernikahan yang bahagia lahir dari dua orang yang sama-sama belajar memahami."
@@ -258,7 +652,87 @@
         </section>
 
         <!-- Section 3: Couple Profiles -->
-        <section class="py-32 px-margin-mobile md:px-margin-desktop space-y-24" id="couple">
+        <section class="py-32 px-margin-mobile md:px-margin-desktop space-y-24 relative overflow-hidden" id="couple">
+            <!-- Left side vine -->
+            <div
+                class="floral-decor absolute left-0 top-1/4 w-28 md:w-56 h-auto text-secondary/15 -translate-x-4 md:-translate-x-8 animate-float-slow">
+                <svg viewBox="0 0 100 240" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-full h-full">
+                    <!-- Main stem -->
+                    <path d="M 15,240 Q 65,120 15,0" stroke-width="1.5" />
+                    <!-- Large leaf cluster 1 (Bottom) -->
+                    <path d="M 32,200 Q 55,185 65,205 Q 45,225 32,200 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 28,215 Q 10,205 12,225 Q 30,225 28,215 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <!-- Flower 1 (Lower middle) -->
+                    <path
+                        d="M 40,160 C 30,150 50,135 55,150 C 60,135 80,150 70,160 C 80,170 60,185 55,170 C 50,185 30,170 40,160 Z"
+                        fill="currentColor" fill-opacity="0.08" stroke-width="1.2" />
+                    <circle cx="55" cy="160" r="3" fill="currentColor" />
+                    <!-- Middle leaves -->
+                    <path d="M 38,125 Q 65,115 70,135 Q 50,150 38,125 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 32,105 Q 5,95 8,115 Q 25,120 32,105 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <!-- Flower 2 (Upper middle) -->
+                    <path
+                        d="M 25,80 C 15,70 35,55 40,70 C 45,55 65,70 55,80 C 65,90 45,105 40,90 C 35,105 15,90 25,80 Z"
+                        fill="currentColor" fill-opacity="0.08" stroke-width="1.2" />
+                    <circle cx="40" cy="80" r="3" fill="currentColor" />
+                    <!-- Top leaves -->
+                    <path d="M 25,45 Q 50,35 55,55 Q 35,65 25,45 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 20,25 Q -5,15 -2,35 Q 15,38 20,25 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 15,10 Q 30,0 35,15 Q 20,25 15,10 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <!-- Small dots/accent petals -->
+                    <circle cx="65" cy="100" r="2" fill="currentColor" fill-opacity="0.15" />
+                    <circle cx="20" cy="140" r="1.5" fill="currentColor" fill-opacity="0.15" />
+                    <circle cx="50" cy="30" r="2" fill="currentColor" fill-opacity="0.15" />
+                </svg>
+            </div>
+            <!-- Right side vine -->
+            <div
+                class="floral-decor absolute right-0 bottom-1/4 w-28 md:w-56 h-auto text-secondary/15 translate-x-4 md:translate-x-8 scale-x-[-1] animate-float-slow-reverse">
+                <svg viewBox="0 0 100 240" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-full h-full">
+                    <!-- Main stem -->
+                    <path d="M 15,240 Q 65,120 15,0" stroke-width="1.5" />
+                    <!-- Large leaf cluster 1 (Bottom) -->
+                    <path d="M 32,200 Q 55,185 65,205 Q 45,225 32,200 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 28,215 Q 10,205 12,225 Q 30,225 28,215 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <!-- Flower 1 (Lower middle) -->
+                    <path
+                        d="M 40,160 C 30,150 50,135 55,150 C 60,135 80,150 70,160 C 80,170 60,185 55,170 C 50,185 30,170 40,160 Z"
+                        fill="currentColor" fill-opacity="0.08" stroke-width="1.2" />
+                    <circle cx="55" cy="160" r="3" fill="currentColor" />
+                    <!-- Middle leaves -->
+                    <path d="M 38,125 Q 65,115 70,135 Q 50,150 38,125 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 32,105 Q 5,95 8,115 Q 25,120 32,105 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <!-- Flower 2 (Upper middle) -->
+                    <path
+                        d="M 25,80 C 15,70 35,55 40,70 C 45,55 65,70 55,80 C 65,90 45,105 40,90 C 35,105 15,90 25,80 Z"
+                        fill="currentColor" fill-opacity="0.08" stroke-width="1.2" />
+                    <circle cx="40" cy="80" r="3" fill="currentColor" />
+                    <!-- Top leaves -->
+                    <path d="M 25,45 Q 50,35 55,55 Q 35,65 25,45 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 20,25 Q -5,15 -2,35 Q 15,38 20,25 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 15,10 Q 30,0 35,15 Q 20,25 15,10 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <!-- Small dots/accent petals -->
+                    <circle cx="65" cy="100" r="2" fill="currentColor" fill-opacity="0.15" />
+                    <circle cx="20" cy="140" r="1.5" fill="currentColor" fill-opacity="0.15" />
+                    <circle cx="50" cy="30" r="2" fill="currentColor" fill-opacity="0.15" />
+                </svg>
+            </div>
             <div class="text-center mb-16">
                 <h2 class="font-headline-lg text-headline-lg text-primary italic">Mempelai Berbahagia</h2>
             </div>
@@ -290,8 +764,54 @@
 
         <!-- Section 4: Event Details -->
         <section
-            class="py-32 px-margin-mobile md:px-margin-desktop bg-surface-container-low rounded-3xl mx-margin-mobile"
+            class="py-32 px-margin-mobile md:px-margin-desktop bg-surface-container-low rounded-3xl mx-margin-mobile relative overflow-hidden"
             id="events">
+            <!-- Top-right corner branch for Events -->
+            <div
+                class="floral-decor absolute top-0 right-0 w-36 h-36 md:w-64 md:h-64 text-secondary/20 translate-x-4 -translate-y-4 rotate-90 animate-float-slow">
+                <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-full h-full">
+                    <!-- Large Main Peony/Rose -->
+                    <path
+                        d="M 40,40 C 30,10 60,0 80,20 C 100,0 130,10 120,40 C 140,50 140,80 120,90 C 130,120 100,130 80,110 C 60,130 30,120 40,90 C 20,80 20,50 40,40 Z"
+                        fill="currentColor" fill-opacity="0.03" stroke-width="1" />
+                    <path
+                        d="M 50,50 C 45,30 65,25 80,40 C 95,25 115,30 110,50 C 125,60 125,80 110,90 C 115,110 95,115 80,100 C 65,115 45,110 50,90 C 35,80 35,60 50,50 Z"
+                        fill="currentColor" fill-opacity="0.06" stroke-width="1.2" />
+                    <circle cx="80" cy="75" r="8" fill="currentColor" fill-opacity="0.12" stroke-width="1" />
+                    <path d="M 77,73 Q 80,70 83,73 T 80,80" />
+                    <!-- Willow Leaves -->
+                    <path d="M 40,40 Q 10,20 0,0 Q 25,15 40,40 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke-width="1.2" />
+                    <path d="M 40,80 Q 15,95 0,110 Q 20,85 40,80 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke-width="1.2" />
+                    <path d="M 120,40 Q 145,15 160,0 Q 135,20 120,40 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke-width="1.2" />
+                </svg>
+            </div>
+            <!-- Bottom-left corner branch for Events -->
+            <div
+                class="floral-decor absolute bottom-0 left-0 w-36 h-36 md:w-64 md:h-64 text-secondary/20 -translate-x-4 translate-y-4 -rotate-90 animate-float-slow-reverse">
+                <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-full h-full">
+                    <!-- Large Main Peony/Rose -->
+                    <path
+                        d="M 40,40 C 30,10 60,0 80,20 C 100,0 130,10 120,40 C 140,50 140,80 120,90 C 130,120 100,130 80,110 C 60,130 30,120 40,90 C 20,80 20,50 40,40 Z"
+                        fill="currentColor" fill-opacity="0.03" stroke-width="1" />
+                    <path
+                        d="M 50,50 C 45,30 65,25 80,40 C 95,25 115,30 110,50 C 125,60 125,80 110,90 C 115,110 95,115 80,100 C 65,115 45,110 50,90 C 35,80 35,60 50,50 Z"
+                        fill="currentColor" fill-opacity="0.06" stroke-width="1.2" />
+                    <circle cx="80" cy="75" r="8" fill="currentColor" fill-opacity="0.12" stroke-width="1" />
+                    <path d="M 77,73 Q 80,70 83,73 T 80,80" />
+                    <!-- Willow Leaves -->
+                    <path d="M 40,40 Q 10,20 0,0 Q 25,15 40,40 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke-width="1.2" />
+                    <path d="M 40,80 Q 15,95 0,110 Q 20,85 40,80 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke-width="1.2" />
+                    <path d="M 120,40 Q 145,15 160,0 Q 135,20 120,40 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke-width="1.2" />
+                </svg>
+            </div>
             <div class="grid md:grid-cols-2 gap-12 text-center items-stretch">
                 <!-- Akad -->
                 <div class="p-12 border border-outline-variant bg-surface-container-lowest shadow-sm space-y-6">
@@ -310,8 +830,12 @@
                 <span class="material-symbols-outlined text-primary mb-4">location_on</span>
                 <h3 class="font-headline-md text-headline-md text-primary mb-2">Lokasi Acara</h3>
                 <p class="font-body-lg text-body-lg mb-8">Ola Fit Club - CitraLand The GreenLake Surabaya</p>
-                <div class="w-full h-64 bg-surface-container-high rounded-lg overflow-hidden relative border border-outline-variant/30 shadow-sm">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126623.42512440751!2d112.62103987517445!3d-7.35590961966771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fd89496b77cb%3A0xf45ca6f4a329b9d7!2sOla%20Fit%20Club%20-%20CitraLand%20The%20GreenLake%20Surabaya!5e0!3m2!1sid!2sid!4v1779766869008!5m2!1sid!2sid" class="w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div
+                    class="w-full h-64 bg-surface-container-high rounded-lg overflow-hidden relative border border-outline-variant/30 shadow-sm">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126623.42512440751!2d112.62103987517445!3d-7.35590961966771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fd89496b77cb%3A0xf45ca6f4a329b9d7!2sOla%20Fit%20Club%20-%20CitraLand%20The%20GreenLake%20Surabaya!5e0!3m2!1sid!2sid!4v1779766869008!5m2!1sid!2sid"
+                        class="w-full h-full border-0" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </section>
@@ -322,26 +846,119 @@
                 <h2 class="font-headline-lg text-headline-lg text-primary italic">Our Gallery</h2>
                 <div class="w-16 h-[1px] bg-outline mx-auto my-6"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-                <div
-                    class="md:col-span-2 md:row-span-2 rounded-xl overflow-hidden border border-outline-variant shadow-sm aspect-square md:aspect-auto">
-                    <img alt="Gallery Placeholder" class="w-full h-full object-cover"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiUrFECnyVOyrYC5UNOsXSbG9-_q4E_ixwGD27iGiekzV0Tf4N434OlQKp3pLcTKaqjnq6xqkThR94He9b_W58mG2lvVa81kqgTdbTo4W7FxlpZuUwWVj3rPnwuBUTNb5pQWdSpniNkSqcvJjNjVwzKUEjUSR08WPMGTdCkdp9iiYLUpZ94p4Y4P4hcaBdz5dvYd7qwZssgJi0GyVyXoaSk9bullkse9ZrXnerO5iXLS_tyPjOuLEfdeX83Ic0EppNAc2A4z5_wZM" />
+            <div class="columns-1 sm:columns-2 md:columns-3 gap-4 max-w-5xl mx-auto">
+                <!-- Image 1 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(0)">
+                    <img alt="Wedding Photo 1" class="w-full h-auto object-cover" src="foto/1.JPG" loading="lazy" />
                 </div>
-                <div
-                    class="rounded-xl overflow-hidden border border-outline-variant shadow-sm bg-surface-container-high aspect-square flex items-center justify-center text-outline">
-                    <span class="material-symbols-outlined text-4xl">photo_library</span>
+                <!-- Image 2 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(1)">
+                    <img alt="Wedding Photo 2" class="w-full h-auto object-cover" src="foto/2.JPG" loading="lazy" />
                 </div>
-                <div
-                    class="rounded-xl overflow-hidden border border-outline-variant shadow-sm bg-surface-container-high aspect-square flex items-center justify-center text-outline">
-                    <span class="material-symbols-outlined text-4xl">favorite</span>
+                <!-- Image 3 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(2)">
+                    <img alt="Wedding Photo 3" class="w-full h-auto object-cover" src="foto/3.JPG" loading="lazy" />
+                </div>
+                <!-- Image 4 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(3)">
+                    <img alt="Wedding Photo 4" class="w-full h-auto object-cover" src="foto/4.JPG" loading="lazy" />
+                </div>
+                <!-- Image 5 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(4)">
+                    <img alt="Wedding Photo 5" class="w-full h-auto object-cover" src="foto/5.JPG" loading="lazy" />
+                </div>
+                <!-- Image 6 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(5)">
+                    <img alt="Wedding Photo 6" class="w-full h-auto object-cover" src="foto/6.JPG" loading="lazy" />
+                </div>
+                <!-- Image 7 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(6)">
+                    <img alt="Wedding Photo 7" class="w-full h-auto object-cover" src="foto/7.JPG" loading="lazy" />
+                </div>
+                <!-- Image 8 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(7)">
+                    <img alt="Wedding Photo 8" class="w-full h-auto object-cover" src="foto/8.JPG" loading="lazy" />
+                </div>
+                <!-- Image 9 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(8)">
+                    <img alt="Wedding Photo 9" class="w-full h-auto object-cover" src="foto/9.JPG" loading="lazy" />
+                </div>
+                <!-- Image 10 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(9)">
+                    <img alt="Wedding Photo 10" class="w-full h-auto object-cover" src="foto/10.JPG" loading="lazy" />
+                </div>
+                <!-- Image 11 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(10)">
+                    <img alt="Wedding Photo 11" class="w-full h-auto object-cover" src="foto/11.JPG" loading="lazy" />
+                </div>
+                <!-- Image 12 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(11)">
+                    <img alt="Wedding Photo 12" class="w-full h-auto object-cover" src="foto/12.JPG" loading="lazy" />
+                </div>
+                <!-- Image 13 -->
+                <div class="break-inside-avoid mb-4 rounded-xl overflow-hidden border border-outline-variant/30 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                    onclick="openLightbox(12)">
+                    <img alt="Wedding Photo 13" class="w-full h-auto object-cover" src="foto/13.JPG" loading="lazy" />
                 </div>
             </div>
         </section>
 
         <!-- Section 6: Digital Gift -->
-        <section class="py-32 px-margin-mobile md:px-margin-desktop text-center border-t border-outline-variant/30"
+        <section
+            class="py-32 px-margin-mobile md:px-margin-desktop text-center border-t border-outline-variant/30 relative overflow-hidden"
             id="rsvp">
+            <!-- Bottom-left corner floral for RSVP -->
+            <div
+                class="floral-decor absolute bottom-0 left-0 w-36 h-36 md:w-64 md:h-64 text-secondary/20 -translate-x-4 translate-y-4 animate-float-slow-reverse">
+                <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-full h-full">
+                    <!-- Large Main Peony/Rose -->
+                    <path
+                        d="M 40,40 C 30,10 60,0 80,20 C 100,0 130,10 120,40 C 140,50 140,80 120,90 C 130,120 100,130 80,110 C 60,130 30,120 40,90 C 20,80 20,50 40,40 Z"
+                        fill="currentColor" fill-opacity="0.03" stroke-width="1" />
+                    <path
+                        d="M 50,50 C 45,30 65,25 80,40 C 95,25 115,30 110,50 C 125,60 125,80 110,90 C 115,110 95,115 80,100 C 65,115 45,110 50,90 C 35,80 35,60 50,50 Z"
+                        fill="currentColor" fill-opacity="0.06" stroke-width="1.2" />
+                    <circle cx="80" cy="75" r="8" fill="currentColor" fill-opacity="0.12" stroke-width="1" />
+                    <!-- Willow Leaves -->
+                    <path d="M 40,40 Q 10,20 0,0 Q 25,15 40,40 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke-width="1.2" />
+                    <path d="M 40,80 Q 15,95 0,110 Q 20,85 40,80 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke-width="1.2" />
+                </svg>
+            </div>
+            <!-- Top-right corner floral for RSVP -->
+            <div
+                class="floral-decor absolute top-0 right-0 w-36 h-36 md:w-64 md:h-64 text-secondary/20 translate-x-4 -translate-y-4 rotate-180 animate-float-slow">
+                <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-full h-full">
+                    <!-- Large Main Peony/Rose -->
+                    <path
+                        d="M 40,40 C 30,10 60,0 80,20 C 100,0 130,10 120,40 C 140,50 140,80 120,90 C 130,120 100,130 80,110 C 60,130 30,120 40,90 C 20,80 20,50 40,40 Z"
+                        fill="currentColor" fill-opacity="0.03" stroke-width="1" />
+                    <path
+                        d="M 50,50 C 45,30 65,25 80,40 C 95,25 115,30 110,50 C 125,60 125,80 110,90 C 115,110 95,115 80,100 C 65,115 45,110 50,90 C 35,80 35,60 50,50 Z"
+                        fill="currentColor" fill-opacity="0.06" stroke-width="1.2" />
+                    <circle cx="80" cy="75" r="8" fill="currentColor" fill-opacity="0.12" stroke-width="1" />
+                    <!-- Willow Leaves -->
+                    <path d="M 40,40 Q 10,20 0,0 Q 25,15 40,40 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke-width="1.2" />
+                    <path d="M 40,80 Q 15,95 0,110 Q 20,85 40,80 Z" fill="currentColor" fill-opacity="0.08"
+                        stroke-width="1.2" />
+                </svg>
+            </div>
             <h2 class="font-headline-lg text-headline-lg text-primary italic mb-12">Wedding Gift</h2>
             <p class="max-w-lg mx-auto font-body-md text-body-md text-on-surface-variant mb-12">
                 Doa restu Anda adalah hadiah terindah bagi kami. Namun jika Anda ingin memberikan tanda kasih, dapat
@@ -359,11 +976,102 @@
                     <p class="font-body-lg text-body-lg tracking-widest text-on-surface-variant">987-654-321-0</p>
                 </div>
             </div>
+
+            <!-- Wedding Registry Button -->
+            <div class="mt-12 flex justify-center">
+                <a href="https://www.myregistry.com/wedding-registry/rizky-adi-putra-and-aina-aisyah-hasan-nurdin-sidoarjo-jawa-timur/5470550"
+                    target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-8 py-3 bg-primary text-white hover:bg-primary-container font-bold rounded-lg text-sm tracking-wide transition-all shadow hover:shadow-md active:scale-95">
+                    <span class="material-symbols-outlined text-[20px]">card_giftcard</span>
+                    Wedding Registry
+                </a>
+            </div>
         </section>
 
         <!-- Section 7: Wedding Wishes -->
-        <section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface border-t border-outline-variant/30"
+        <section
+            class="py-24 px-margin-mobile md:px-margin-desktop bg-surface border-t border-outline-variant/30 relative overflow-hidden"
             id="wishes">
+            <!-- Left side climbing branch for Wishes -->
+            <div
+                class="floral-decor absolute left-0 top-10 w-28 md:w-56 h-auto text-secondary/15 -translate-x-4 md:-translate-x-8 animate-float-slow">
+                <svg viewBox="0 0 100 240" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-full h-full">
+                    <!-- Main stem -->
+                    <path d="M 15,240 Q 65,120 15,0" stroke-width="1.5" />
+                    <!-- Large leaf cluster 1 (Bottom) -->
+                    <path d="M 32,200 Q 55,185 65,205 Q 45,225 32,200 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 28,215 Q 10,205 12,225 Q 30,225 28,215 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <!-- Flower 1 (Lower middle) -->
+                    <path
+                        d="M 40,160 C 30,150 50,135 55,150 C 60,135 80,150 70,160 C 80,170 60,185 55,170 C 50,185 30,170 40,160 Z"
+                        fill="currentColor" fill-opacity="0.08" stroke-width="1.2" />
+                    <circle cx="55" cy="160" r="3" fill="currentColor" />
+                    <!-- Middle leaves -->
+                    <path d="M 38,125 Q 65,115 70,135 Q 50,150 38,125 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 32,105 Q 5,95 8,115 Q 25,120 32,105 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <!-- Flower 2 (Upper middle) -->
+                    <path
+                        d="M 25,80 C 15,70 35,55 40,70 C 45,55 65,70 55,80 C 65,90 45,105 40,90 C 35,105 15,90 25,80 Z"
+                        fill="currentColor" fill-opacity="0.08" stroke-width="1.2" />
+                    <circle cx="40" cy="80" r="3" fill="currentColor" />
+                    <!-- Top leaves -->
+                    <path d="M 25,45 Q 50,35 55,55 Q 35,65 25,45 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 20,25 Q -5,15 -2,35 Q 15,38 20,25 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 15,10 Q 30,0 35,15 Q 20,25 15,10 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <!-- Small dots/accent petals -->
+                    <circle cx="65" cy="100" r="2" fill="currentColor" fill-opacity="0.15" />
+                    <circle cx="20" cy="140" r="1.5" fill="currentColor" fill-opacity="0.15" />
+                    <circle cx="50" cy="30" r="2" fill="currentColor" fill-opacity="0.15" />
+                </svg>
+            </div>
+            <!-- Right side climbing branch for Wishes -->
+            <div
+                class="floral-decor absolute right-0 bottom-10 w-28 md:w-56 h-auto text-secondary/15 translate-x-4 md:translate-x-8 scale-x-[-1] animate-float-slow-reverse">
+                <svg viewBox="0 0 100 240" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round" class="w-full h-full">
+                    <!-- Main stem -->
+                    <path d="M 15,240 Q 65,120 15,0" stroke-width="1.5" />
+                    <!-- Large leaf cluster 1 (Bottom) -->
+                    <path d="M 32,200 Q 55,185 65,205 Q 45,225 32,200 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 28,215 Q 10,205 12,225 Q 30,225 28,215 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <!-- Flower 1 (Lower middle) -->
+                    <path
+                        d="M 40,160 C 30,150 50,135 55,150 C 60,135 80,150 70,160 C 80,170 60,185 55,170 C 50,185 30,170 40,160 Z"
+                        fill="currentColor" fill-opacity="0.08" stroke-width="1.2" />
+                    <circle cx="55" cy="160" r="3" fill="currentColor" />
+                    <!-- Middle leaves -->
+                    <path d="M 38,125 Q 65,115 70,135 Q 50,150 38,125 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 32,105 Q 5,95 8,115 Q 25,120 32,105 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <!-- Flower 2 (Upper middle) -->
+                    <path
+                        d="M 25,80 C 15,70 35,55 40,70 C 45,55 65,70 55,80 C 65,90 45,105 40,90 C 35,105 15,90 25,80 Z"
+                        fill="currentColor" fill-opacity="0.08" stroke-width="1.2" />
+                    <circle cx="40" cy="80" r="3" fill="currentColor" />
+                    <!-- Top leaves -->
+                    <path d="M 25,45 Q 50,35 55,55 Q 35,65 25,45 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 20,25 Q -5,15 -2,35 Q 15,38 20,25 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <path d="M 15,10 Q 30,0 35,15 Q 20,25 15,10 Z" fill="currentColor" fill-opacity="0.05"
+                        stroke-width="1" />
+                    <!-- Small dots/accent petals -->
+                    <circle cx="65" cy="100" r="2" fill="currentColor" fill-opacity="0.15" />
+                    <circle cx="20" cy="140" r="1.5" fill="currentColor" fill-opacity="0.15" />
+                    <circle cx="50" cy="30" r="2" fill="currentColor" fill-opacity="0.15" />
+                </svg>
+            </div>
             <div class="max-w-xl mx-auto flex flex-col items-center">
                 <!-- Heading matching screenshot: serif "Wedding Wish" and bold comment counter -->
                 <h2 class="font-display-lg text-4xl text-primary italic text-center mb-8"
@@ -504,25 +1212,51 @@
             }
         });
 
-        // Seed Comments and Local Storage Comments logic
-        const SEED_COMMENTS = [
+        // Supabase Configuration
+        const { createClient } = supabase;
+        const supabaseUrl = 'https://lhdazxoblnsfpvvdncbd.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxoZGF6eG9ibG5zZnB2dmRuY2JkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzNDAzMTAsImV4cCI6MjA5NTkxNjMxMH0.cpEzs6n3_Kr8FL3iB0SwUGG2YXvXdUE3_3RFbFnIqP8';
+        const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
-        ];
+        async function getComments() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('tamu_undangan')
+                    .select('*')
+                    .order('created_at', { ascending: false });
 
-        function getComments() {
-            const stored = localStorage.getItem('wedding_wishes');
-            if (!stored) {
-                localStorage.setItem('wedding_wishes', JSON.stringify(SEED_COMMENTS));
-                return SEED_COMMENTS;
+                if (error) throw error;
+
+                return data.map(row => ({
+                    id: row.id,
+                    name: row.nama || 'Anonim',
+                    wish: row.ucapan || '',
+                    attendance: row.kehadiran ? 'Hadir' : 'Tidak Hadir',
+                    timestamp: row.created_at
+                }));
+            } catch (err) {
+                console.error('Error fetching comments:', err);
+                return [];
             }
-            return JSON.parse(stored);
         }
 
-        function saveComment(comment) {
-            const comments = getComments();
-            comments.unshift(comment); // Newest first
-            localStorage.setItem('wedding_wishes', JSON.stringify(comments));
-            renderComments();
+        async function saveComment(comment) {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('tamu_undangan')
+                    .insert([{
+                        nama: comment.name,
+                        ucapan: comment.wish,
+                        kehadiran: comment.attendance === 'Hadir'
+                    }])
+                    .select();
+
+                if (error) throw error;
+            } catch (err) {
+                console.error('Error saving comment:', err);
+                alert('Gagal mengirim ucapan. Silakan coba lagi.');
+                throw err;
+            }
         }
 
         function formatTimeAgo(isoString) {
@@ -539,25 +1273,24 @@
             return `${diffDays} hari lalu`;
         }
 
-        function replyToGuest(name) {
-            const textarea = document.getElementById('guest-wish');
-            textarea.value = `@${name} `;
-            textarea.focus();
-            // Scroll to wishes form smoothly
-            document.getElementById('wishes-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
 
-        function renderComments() {
-            const comments = getComments();
+        async function renderComments() {
             const commentsList = document.getElementById('comments-list');
             const commentsCount = document.getElementById('comments-count');
 
+            if (!commentsList.innerHTML) {
+                commentsList.innerHTML = '<div class="text-center py-4 text-on-surface-variant">Memuat ucapan...</div>';
+            }
+
+            const comments = await getComments();
             commentsCount.textContent = `${comments.length} Comments`;
 
-            // Sort comments: newest first (based on timestamp iso strings)
-            comments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
             commentsList.innerHTML = '';
+
+            if (comments.length === 0) {
+                commentsList.innerHTML = '<div class="text-center py-4 text-on-surface-variant">Belum ada ucapan. Jadilah yang pertama!</div>';
+                return;
+            }
 
             comments.forEach(c => {
                 const commentItem = document.createElement('div');
@@ -576,7 +1309,6 @@
                         <span class="material-symbols-outlined text-xs">schedule</span>
                         <span>${formatTimeAgo(c.timestamp)}</span>
                     </span>
-                    <button class="font-bold hover:text-primary transition-colors cursor-pointer" onclick="replyToGuest('${c.name.replace(/'/g, "\\'")}')">Reply</button>
                 </div>
             `;
                 commentsList.appendChild(commentItem);
@@ -585,28 +1317,53 @@
 
         // Handle Form Submission
         const form = document.getElementById('wishes-form');
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const nameInput = document.getElementById('guest-name');
             const wishInput = document.getElementById('guest-wish');
             const attendanceInput = document.getElementById('guest-attendance');
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            const nameVal = nameInput.value.trim();
+            const wishVal = wishInput.value.trim();
+            const attendanceVal = attendanceInput.value;
+
+            if (!nameVal || !wishVal || !attendanceVal) {
+                alert('Silakan isi semua bidang!');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Mengirim...';
 
             const newComment = {
-                id: 'comment-' + Date.now(),
-                name: nameInput.value.trim(),
-                wish: wishInput.value.trim(),
-                attendance: attendanceInput.value,
-                timestamp: new Date().toISOString()
+                name: nameVal,
+                wish: wishVal,
+                attendance: attendanceVal
             };
 
-            saveComment(newComment);
+            try {
+                await saveComment(newComment);
+                await renderComments();
 
-            // Reset Form
-            nameInput.value = '';
-            wishInput.value = '';
-            attendanceInput.value = '';
-            attendanceInput.classList.add('text-outline-variant');
-            attendanceInput.classList.remove('text-primary');
+                // Reset Form
+                wishInput.value = '';
+                const currentGuestName = getGuestName();
+                if (currentGuestName) {
+                    nameInput.value = currentGuestName;
+                } else {
+                    nameInput.value = '';
+                }
+                attendanceInput.value = '';
+                attendanceInput.classList.add('text-outline-variant');
+                attendanceInput.classList.remove('text-primary');
+            } catch (err) {
+                // error handled in saveComment
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+            }
         });
 
         // Scroll Spy & Navigation Highlight
@@ -752,10 +1509,116 @@
             }
         }
 
+        // Lightbox Logic
+        const galleryImages = [
+            'foto/1.JPG', 'foto/2.JPG', 'foto/3.JPG', 'foto/4.JPG', 'foto/5.JPG',
+            'foto/6.JPG', 'foto/7.JPG', 'foto/8.JPG', 'foto/9.JPG', 'foto/10.JPG',
+            'foto/11.JPG', 'foto/12.JPG', 'foto/13.JPG'
+        ];
+        let currentLightboxIndex = 0;
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-image');
+            const caption = document.getElementById('lightbox-caption');
+
+            img.src = galleryImages[currentLightboxIndex];
+            caption.textContent = `Foto ${currentLightboxIndex + 1} dari ${galleryImages.length}`;
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('opacity-100');
+                img.classList.remove('scale-95');
+                img.classList.add('scale-100');
+            }, 10);
+
+            document.body.style.overflow = 'hidden';
+            document.addEventListener('keydown', handleLightboxKeydown);
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-image');
+
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            img.classList.remove('scale-100');
+            img.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                img.src = '';
+            }, 300);
+
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', handleLightboxKeydown);
+        }
+
+        function prevLightboxImage() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length;
+            updateLightboxContent();
+        }
+
+        function nextLightboxImage() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
+            updateLightboxContent();
+        }
+
+        function updateLightboxContent() {
+            const img = document.getElementById('lightbox-image');
+            const caption = document.getElementById('lightbox-caption');
+
+            img.style.opacity = '0';
+            img.style.transform = 'scale(0.95)';
+
+            setTimeout(() => {
+                img.src = galleryImages[currentLightboxIndex];
+                caption.textContent = `Foto ${currentLightboxIndex + 1} dari ${galleryImages.length}`;
+                img.style.opacity = '1';
+                img.style.transform = 'scale(1)';
+            }, 150);
+        }
+
+        function handleLightboxKeydown(e) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevLightboxImage();
+            if (e.key === 'ArrowRight') nextLightboxImage();
+        }
+
         // Initial load
         renderComments();
         updateActiveNav();
     </script>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal"
+        class="fixed inset-0 bg-black/90 backdrop-blur-md z-[9999] hidden flex items-center justify-center transition-all duration-300 opacity-0"
+        onclick="closeLightbox()">
+        <!-- Close Button -->
+        <button onclick="closeLightbox(); event.stopPropagation();"
+            class="absolute top-4 right-4 text-white hover:text-outline-variant transition-colors p-2 z-[10000]">
+            <span class="material-symbols-outlined text-4xl">close</span>
+        </button>
+        <!-- Prev Button -->
+        <button onclick="prevLightboxImage(); event.stopPropagation();"
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-outline-variant transition-colors p-2 z-[10000] bg-black/20 hover:bg-black/40 rounded-full">
+            <span class="material-symbols-outlined text-4xl">chevron_left</span>
+        </button>
+        <!-- Next Button -->
+        <button onclick="nextLightboxImage(); event.stopPropagation();"
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-outline-variant transition-colors p-2 z-[10000] bg-black/20 hover:bg-black/40 rounded-full">
+            <span class="material-symbols-outlined text-4xl">chevron_right</span>
+        </button>
+        <!-- Image Container -->
+        <div class="max-w-[90%] max-h-[85vh] flex flex-col items-center select-none" onclick="event.stopPropagation();">
+            <img id="lightbox-image"
+                class="max-w-full max-h-[80vh] object-contain rounded shadow-2xl scale-95 transition-all duration-300"
+                src="" alt="Zoomed wedding photo" style="transition: opacity 0.15s ease, transform 0.15s ease;" />
+            <p id="lightbox-caption" class="text-white/80 font-body-md text-sm mt-4 tracking-wider"></p>
+        </div>
+    </div>
 </body>
 
 </html>
