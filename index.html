@@ -208,7 +208,7 @@
         /* ===== Floating Music Player ===== */
         #music-player-btn {
             position: fixed;
-            bottom: 24px;
+            bottom: 88px; /* Lifted on mobile to not cover the bottom navigation bar */
             left: 24px;
             z-index: 9998;
             width: 52px;
@@ -224,6 +224,13 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             outline: none;
             overflow: hidden;
+        }
+
+        /* On desktop screens, restore standard bottom spacing */
+        @media (min-width: 768px) {
+            #music-player-btn {
+                bottom: 24px;
+            }
         }
 
         #music-player-btn:hover {
@@ -304,10 +311,241 @@
         #music-player-btn.playing {
             animation: pulse-ring 2s ease-out infinite;
         }
+
+        /* ===== Opening Cover Overlay ===== */
+        #opening-cover {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: linear-gradient(160deg, #2c160e 0%, #442a22 45%, #5d4037 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.9s ease;
+            will-change: transform, opacity;
+            overflow: hidden;
+        }
+
+        #opening-cover.dismissed {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Decorative rings behind the cover content */
+        .cover-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 219, 208, 0.1);
+            pointer-events: none;
+        }
+
+        /* Shimmer particles on cover */
+        @keyframes shimmer-float {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: translateY(-18px) scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .cover-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 219, 208, 0.5);
+            pointer-events: none;
+            animation: shimmer-float var(--dur, 4s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        /* Cover text styles */
+        .cover-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(255, 219, 208, 0.6);
+            margin-bottom: 1.5rem;
+        }
+
+        .cover-names {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 10vw, 80px);
+            line-height: 1.1;
+            color: #ffdbd0;
+            font-style: italic;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .cover-divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(255, 219, 208, 0.4);
+            margin: 1.5rem auto;
+        }
+
+        .cover-date {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            letter-spacing: 0.12em;
+            color: rgba(255, 219, 208, 0.75);
+            margin-bottom: 3rem;
+        }
+
+        /* Open invitation button */
+        #open-invitation-btn {
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #2c160e;
+            background: linear-gradient(135deg, #ffdbd0 0%, #e7bdb1 100%);
+            border: none;
+            border-radius: 9999px;
+            padding: 16px 44px;
+            cursor: pointer;
+            box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(255, 219, 208, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
+        }
+
+        #open-invitation-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, transparent 60%);
+            border-radius: inherit;
+        }
+
+        #open-invitation-btn:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45), 0 0 0 8px rgba(255, 219, 208, 0.15);
+        }
+
+        #open-invitation-btn:active {
+            transform: translateY(0) scale(0.97);
+        }
+
+        @keyframes btn-pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(255, 219, 208, 0.5);
+            }
+
+            70% {
+                box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35), 0 0 0 14px rgba(255, 219, 208, 0);
+            }
+        }
+
+        #open-invitation-btn {
+            animation: btn-pulse 2.5s ease-out infinite;
+        }
+
+        /* Envelope icon next to button text */
+        .btn-icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+            font-size: 18px;
+        }
     </style>
 </head>
 
 <body class="font-body-md text-body-md pb-16 md:pb-0">
+
+    <!-- ===== Opening Cover Overlay ===== -->
+    <div id="opening-cover" role="dialog" aria-modal="true" aria-label="Wedding Invitation Cover">
+
+        <!-- Decorative rings -->
+        <div class="cover-ring" style="width:300px;height:300px;top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+        <div class="cover-ring"
+            style="width:500px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);border-color:rgba(255,219,208,0.06)">
+        </div>
+        <div class="cover-ring"
+            style="width:700px;height:700px;top:50%;left:50%;transform:translate(-50%,-50%);border-color:rgba(255,219,208,0.04)">
+        </div>
+
+        <!-- Shimmer particles -->
+        <div class="cover-particle" style="width:4px;height:4px;top:20%;left:15%;--dur:3.5s;--delay:0s"></div>
+        <div class="cover-particle" style="width:3px;height:3px;top:30%;right:18%;--dur:4.2s;--delay:0.8s"></div>
+        <div class="cover-particle" style="width:5px;height:5px;top:65%;left:12%;--dur:5s;--delay:1.5s"></div>
+        <div class="cover-particle" style="width:3px;height:3px;top:70%;right:14%;--dur:3.8s;--delay:0.3s"></div>
+        <div class="cover-particle" style="width:4px;height:4px;top:15%;left:50%;--dur:4.5s;--delay:1s"></div>
+        <div class="cover-particle" style="width:2px;height:2px;top:80%;left:40%;--dur:3.2s;--delay:2s"></div>
+        <div class="cover-particle" style="width:3px;height:3px;top:45%;right:8%;--dur:4.8s;--delay:0.5s"></div>
+
+        <!-- Floral SVG top-left -->
+        <div
+            style="position:absolute;top:0;left:0;width:200px;height:200px;opacity:0.18;pointer-events:none;color:#ffdbd0;transform:translate(-30px,-30px)">
+            <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+                <path d="M 50,50 Q 150,20 220,10" stroke="currentColor" stroke-width="1.2" opacity="0.6" />
+                <path d="M 50,50 Q 20,150 10,220" stroke="currentColor" stroke-width="1.2" opacity="0.6" />
+                <path d="M 50,50 Q 120,120 180,180" stroke="currentColor" stroke-width="1.5" opacity="0.5" />
+                <g transform="translate(60,60)">
+                    <path d="M 0,0 C -15,-30 -30,-60 -10,-80 C 10,-60 15,-30 0,0" fill="currentColor" fill-opacity="0.3"
+                        stroke="currentColor" stroke-width="1" />
+                    <path d="M 0,0 C 25,-25 55,-40 68,-22 C 55,-5 25,-10 0,0" fill="currentColor" fill-opacity="0.3"
+                        stroke="currentColor" stroke-width="1" />
+                    <path d="M 0,0 C 35,10 65,30 58,48 C 40,48 20,25 0,0" fill="currentColor" fill-opacity="0.3"
+                        stroke="currentColor" stroke-width="1" />
+                    <path d="M 0,0 C -25,25 -55,30 -65,12 C -50,-5 -25,-10 0,0" fill="currentColor" fill-opacity="0.3"
+                        stroke="currentColor" stroke-width="1" />
+                    <circle cx="0" cy="0" r="8" fill="currentColor" fill-opacity="0.4" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Floral SVG bottom-right -->
+        <div
+            style="position:absolute;bottom:0;right:0;width:200px;height:200px;opacity:0.18;pointer-events:none;color:#ffdbd0;transform:translate(30px,30px) rotate(180deg)">
+            <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+                <path d="M 50,50 Q 150,20 220,10" stroke="currentColor" stroke-width="1.2" opacity="0.6" />
+                <path d="M 50,50 Q 20,150 10,220" stroke="currentColor" stroke-width="1.2" opacity="0.6" />
+                <g transform="translate(60,60)">
+                    <path d="M 0,0 C -15,-30 -30,-60 -10,-80 C 10,-60 15,-30 0,0" fill="currentColor" fill-opacity="0.3"
+                        stroke="currentColor" stroke-width="1" />
+                    <path d="M 0,0 C 25,-25 55,-40 68,-22 C 55,-5 25,-10 0,0" fill="currentColor" fill-opacity="0.3"
+                        stroke="currentColor" stroke-width="1" />
+                    <path d="M 0,0 C -25,25 -55,30 -65,12 C -50,-5 -25,-10 0,0" fill="currentColor" fill-opacity="0.3"
+                        stroke="currentColor" stroke-width="1" />
+                    <circle cx="0" cy="0" r="8" fill="currentColor" fill-opacity="0.4" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Cover content -->
+        <div style="position:relative;z-index:1;width:100%;max-width:360px;margin:0 auto;padding:0 1rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+            <p class="cover-subtitle">The Wedding of</p>
+            <h2 class="cover-names">Aina &amp; Rizky</h2>
+            <div class="cover-divider"></div>
+            <p class="cover-date" style="margin-bottom: 1.5rem;">Sabtu, 01 Agustus 2026</p>
+
+            <!-- Invited Guest Card -->
+            <div id="guest-container" class="hidden" style="background: rgba(255, 219, 208, 0.08); border: 1px solid rgba(255, 219, 208, 0.15); border-radius: 16px; padding: 20px; margin: 0 auto; text-align: center; max-width: 320px; width: 100%;">
+                <p style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 219, 208, 0.6); margin-bottom: 8px;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+                <p id="guest-invited-name" style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: bold; color: #ffdbd0; font-style: italic; margin-bottom: 8px;"></p>
+                <p style="font-family: 'Montserrat', sans-serif; font-size: 11px; color: rgba(255, 219, 208, 0.55); line-height: 1.4;">Kami Mengundang Anda untuk Menghadiri Pernikahan Kami.</p>
+            </div>
+
+            <button id="open-invitation-btn" onclick="openInvitation()" style="margin-top: 1.5rem;">
+                <span class="material-symbols-outlined btn-icon" style="font-size:16px">mail</span>
+                Buka Undangan
+            </button>
+        </div>
+
+    </div>
     <!-- Top Navigation Bar (Shared Component) -->
     <header
         class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md text-primary dark:text-primary-fixed border-b border-outline-variant docked full-width top-0 sticky z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full">
@@ -327,7 +565,7 @@
                 href="#wishes">Wishes</a>
         </div>
         <button id="menu-btn"
-            class="material-symbols-outlined p-2 hover:bg-surface-container-high rounded-full transition-colors md:hidden">menu</button>
+            class="material-symbols-outlined p-2 hover:bg-surface-container-high rounded-full transition-colors hidden">menu</button>
     </header>
 
     <!-- Mobile Navigation Drawer Overlay -->
@@ -698,16 +936,6 @@
                     Aina &amp; Rizky</h1>
                 <div class="w-16 h-[1px] bg-outline mx-auto my-8"></div>
                 <p class="font-headline-md text-headline-md text-primary">Sabtu, 01 Agustus 2026</p>
-
-                <!-- Invited Guest Card -->
-                <div id="guest-container"
-                    class="mt-12 p-6 bg-tertiary-fixed/30 border border-outline-variant/30 rounded-2xl max-w-sm mx-auto hidden">
-                    <p class="font-label-caps text-[10px] tracking-[0.2em] text-on-surface-variant mb-2">KEPADA YTH.
-                        BAPAK/IBU/SAUDARA/I:</p>
-                    <p id="guest-invited-name" class="font-headline-md text-xl font-bold text-primary italic mb-2"></p>
-                    <p class="font-body-md text-xs text-on-surface-variant">Kami Mengundang Anda untuk Menghadiri
-                        Pernikahan Kami.</p>
-                </div>
             </div>
         </section>
 
@@ -1726,25 +1954,35 @@
                 }
             }
 
+            // Button click toggles play/pause
             btn.addEventListener('click', function () {
                 setPlaying(!isPlaying);
             });
 
-            // Try to autoplay when user first interacts with the page
-            document.addEventListener('click', function startOnInteract() {
-                if (!isPlaying && audio.src && audio.src !== window.location.href) {
-                    setPlaying(true);
-                }
-                document.removeEventListener('click', startOnInteract);
-            }, { once: true, capture: true });
-
-            // If audio has no valid source yet, keep disc still and show music_note
+            // If audio has no valid source yet, keep disc still
             audio.addEventListener('error', function () {
                 disc.classList.remove('spinning');
                 btn.classList.remove('playing');
                 isPlaying = false;
             });
+
+            // Expose globally so the opening cover button can trigger music
+            window._musicSetPlaying = setPlaying;
         })();
+
+        // Called by the opening cover button
+        function openInvitation() {
+            var cover = document.getElementById('opening-cover');
+            cover.classList.add('dismissed');
+            // Start music
+            if (window._musicSetPlaying) {
+                window._musicSetPlaying(true);
+            }
+            // Remove from DOM after animation completes so it doesn't block interaction
+            cover.addEventListener('transitionend', function () {
+                cover.remove();
+            }, { once: true });
+        }
     </script>
 
     <!-- Lightbox Modal -->
