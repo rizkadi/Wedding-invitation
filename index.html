@@ -204,6 +204,106 @@
             user-select: none;
             z-index: 0;
         }
+
+        /* ===== Floating Music Player ===== */
+        #music-player-btn {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 9998;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5d4037 0%, #442a22 100%);
+            border: 2px solid rgba(255, 219, 208, 0.35);
+            box-shadow: 0 4px 24px rgba(68, 42, 34, 0.35), 0 0 0 0 rgba(93, 64, 55, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+            overflow: hidden;
+        }
+
+        #music-player-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(68, 42, 34, 0.5), 0 0 0 6px rgba(93, 64, 55, 0.15);
+        }
+
+        #music-player-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* Vinyl disc wrapper — spins when playing */
+        .music-disc {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .music-disc.spinning {
+            animation: spin-disc 3s linear infinite;
+        }
+
+        @keyframes spin-disc {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Ring grooves on vinyl */
+        .music-disc::before {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 219, 208, 0.2);
+        }
+
+        .music-disc::after {
+            content: '';
+            position: absolute;
+            inset: 13px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 219, 208, 0.12);
+        }
+
+        /* Icon inside the disc */
+        .music-disc .music-icon {
+            font-size: 22px;
+            color: #ffdbd0;
+            position: relative;
+            z-index: 1;
+            transition: opacity 0.2s ease;
+        }
+
+        /* Pulse ring when playing */
+        @keyframes pulse-ring {
+            0% {
+                box-shadow: 0 4px 24px rgba(68, 42, 34, 0.35), 0 0 0 0 rgba(93, 64, 55, 0.5);
+            }
+
+            70% {
+                box-shadow: 0 4px 24px rgba(68, 42, 34, 0.35), 0 0 0 10px rgba(93, 64, 55, 0);
+            }
+
+            100% {
+                box-shadow: 0 4px 24px rgba(68, 42, 34, 0.35), 0 0 0 0 rgba(93, 64, 55, 0);
+            }
+        }
+
+        #music-player-btn.playing {
+            animation: pulse-ring 2s ease-out infinite;
+        }
     </style>
 </head>
 
@@ -757,7 +857,7 @@
                     </div>
                     <h3 class="font-headline-md text-headline-md text-primary">Aina Aisyah Hasan Nurdin</h3>
                     <p class="font-body-md text-body-md text-on-surface-variant">Putri Pertama dari Bapak Hasan Nurdin
-                        &amp; Ibu Dwicho Endah</p>
+                        &amp; Almarhumah Ibu Dwicho Endah</p>
                 </div>
             </div>
         </section>
@@ -967,7 +1067,7 @@
             <div class="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
                 <div class="p-8 border border-outline-variant bg-surface shadow-sm rounded-xl">
                     <p class="font-label-caps text-label-caps text-on-surface-variant mb-2">Bank Transfer</p>
-                    <p class="font-headline-md text-headline-md text-primary mb-1">Aina</p>
+                    <p class="font-headline-md text-headline-md text-primary mb-1">Aina Aisyah Hasan Nurdin</p>
                     <p class="font-body-lg text-body-lg tracking-widest text-on-surface-variant">123-456-789-0</p>
                 </div>
                 <div class="p-8 border border-outline-variant bg-surface shadow-sm rounded-xl">
@@ -1590,6 +1690,61 @@
         // Initial load
         renderComments();
         updateActiveNav();
+    </script>
+
+    <!-- ===== Floating Music Player ===== -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="assets/unravel.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-player-btn" aria-label="Toggle background music" title="Play / Pause Music">
+        <div class="music-disc spinning" id="music-disc">
+            <span class="material-symbols-outlined music-icon" id="music-icon">music_note</span>
+        </div>
+    </button>
+
+    <script>
+        (function () {
+            const btn = document.getElementById('music-player-btn');
+            const disc = document.getElementById('music-disc');
+            const icon = document.getElementById('music-icon');
+            const audio = document.getElementById('bg-music');
+            let isPlaying = false;
+
+            function setPlaying(state) {
+                isPlaying = state;
+                if (state) {
+                    disc.classList.add('spinning');
+                    btn.classList.add('playing');
+                    icon.textContent = 'music_note';
+                    audio.play().catch(() => { });
+                } else {
+                    disc.classList.remove('spinning');
+                    btn.classList.remove('playing');
+                    icon.textContent = 'pause';
+                    audio.pause();
+                }
+            }
+
+            btn.addEventListener('click', function () {
+                setPlaying(!isPlaying);
+            });
+
+            // Try to autoplay when user first interacts with the page
+            document.addEventListener('click', function startOnInteract() {
+                if (!isPlaying && audio.src && audio.src !== window.location.href) {
+                    setPlaying(true);
+                }
+                document.removeEventListener('click', startOnInteract);
+            }, { once: true, capture: true });
+
+            // If audio has no valid source yet, keep disc still and show music_note
+            audio.addEventListener('error', function () {
+                disc.classList.remove('spinning');
+                btn.classList.remove('playing');
+                isPlaying = false;
+            });
+        })();
     </script>
 
     <!-- Lightbox Modal -->
