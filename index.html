@@ -208,7 +208,8 @@
         /* ===== Floating Music Player ===== */
         #music-player-btn {
             position: fixed;
-            bottom: 88px; /* Lifted on mobile to not cover the bottom navigation bar */
+            bottom: 88px;
+            /* Lifted on mobile to not cover the bottom navigation bar */
             left: 24px;
             z-index: 9998;
             width: 52px;
@@ -526,23 +527,39 @@
         </div>
 
         <!-- Cover content -->
-        <div style="position:relative;z-index:1;width:100%;max-width:360px;margin:0 auto;padding:0 1rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+        <div
+            style="position:relative;z-index:1;width:100%;max-width:360px;margin:0 auto;padding:0 1rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
             <p class="cover-subtitle">The Wedding of</p>
             <h2 class="cover-names">Aina &amp; Rizky</h2>
             <div class="cover-divider"></div>
             <p class="cover-date" style="margin-bottom: 1.5rem;">Sabtu, 01 Agustus 2026</p>
 
             <!-- Invited Guest Card -->
-            <div id="guest-container" class="hidden" style="background: rgba(255, 219, 208, 0.08); border: 1px solid rgba(255, 219, 208, 0.15); border-radius: 16px; padding: 20px; margin: 0 auto; text-align: center; max-width: 320px; width: 100%;">
-                <p style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 219, 208, 0.6); margin-bottom: 8px;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-                <p id="guest-invited-name" style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: bold; color: #ffdbd0; font-style: italic; margin-bottom: 8px;"></p>
-                <p style="font-family: 'Montserrat', sans-serif; font-size: 11px; color: rgba(255, 219, 208, 0.55); line-height: 1.4;">Kami Mengundang Anda untuk Menghadiri Pernikahan Kami.</p>
+            <div id="guest-container" class="hidden"
+                style="background: rgba(255, 219, 208, 0.08); border: 1px solid rgba(255, 219, 208, 0.15); border-radius: 16px; padding: 20px; margin: 0 auto; text-align: center; max-width: 320px; width: 100%;">
+                <p
+                    style="font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 219, 208, 0.6); margin-bottom: 8px;">
+                    Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+                <p id="guest-invited-name"
+                    style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: bold; color: #ffdbd0; font-style: italic; margin-bottom: 8px;">
+                </p>
+                <p
+                    style="font-family: 'Montserrat', sans-serif; font-size: 11px; color: rgba(255, 219, 208, 0.55); line-height: 1.4;">
+                    Kami Mengundang Anda untuk Menghadiri Pernikahan Kami.</p>
             </div>
 
             <button id="open-invitation-btn" onclick="openInvitation()" style="margin-top: 1.5rem;">
                 <span class="material-symbols-outlined btn-icon" style="font-size:16px">mail</span>
                 Buka Undangan
             </button>
+        </div>
+
+        <!-- Video overlay inside opening cover (hidden by default) -->
+        <div id="video-overlay" class="absolute inset-0 bg-black z-50 hidden flex items-center justify-center">
+            <video id="intro-video" class="w-full h-full object-cover" playsinline>
+                <source src="Foto/video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
 
     </div>
@@ -1069,23 +1086,24 @@
                 <div class="text-center space-y-4">
                     <div
                         class="w-48 h-48 mx-auto mb-6 rounded-full border-4 border-outline-variant overflow-hidden shadow-md">
-                        <img alt="Rizky Adi Putra" class="w-full h-full object-cover" src="foto/12.JPG" />
+                        <img alt="Aina Aisyah Hasan Nurdin" class="w-full h-full object-cover" src="foto/4.JPG" />
                     </div>
-                    <h3 class="font-headline-md text-headline-md text-primary">Rizky Adi Putra</h3>
-                    <p class="font-body-md text-body-md text-on-surface-variant">Putra Pertama dari Bapak Sumarsono
-                        &amp;
-                        Ibu
-                        Evi Dwi Krisdiana</p>
+                    <h3 class="font-headline-md text-headline-md text-primary">drg. Aina Aisyah Hasan Nurdin</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Putri Pertama dari Bapak Hasan Nurdin
+                        &amp; Almarhumah Ibu Dwicho Endah</p>
                 </div>
+
                 <!-- Bride -->
                 <div class="text-center space-y-4">
                     <div
                         class="w-48 h-48 mx-auto mb-6 rounded-full border-4 border-outline-variant overflow-hidden shadow-md">
-                        <img alt="Aina Aisyah Hasan Nurdin" class="w-full h-full object-cover" src="foto/4.JPG" />
+                        <img alt="Rizky Adi Putra" class="w-full h-full object-cover" src="foto/12.JPG" />
                     </div>
-                    <h3 class="font-headline-md text-headline-md text-primary">Aina Aisyah Hasan Nurdin</h3>
-                    <p class="font-body-md text-body-md text-on-surface-variant">Putri Pertama dari Bapak Hasan Nurdin
-                        &amp; Almarhumah Ibu Dwicho Endah</p>
+                    <h3 class="font-headline-md text-headline-md text-primary">Rizky Adi Putra S.Kom</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Putra Pertama dari Bapak Sumarsono
+                        &amp;
+                        Ibu
+                        Evi Dwi Krisdiana</p>
                 </div>
             </div>
         </section>
@@ -1428,6 +1446,10 @@
                         <span
                             class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-outline-variant">expand_more</span>
                     </div>
+                    <div id="guest-count-container" class="hidden transition-all duration-300">
+                        <input type="text" id="guest-count" placeholder="Berapa banyak orang yang diajak?"
+                            class="w-full px-4 py-3 rounded-lg border border-outline-variant bg-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-primary placeholder-outline-variant transition-all" />
+                    </div>
                     <div>
                         <button type="submit"
                             class="w-28 py-2.5 bg-black text-white hover:bg-black/90 font-bold rounded text-sm tracking-wide transition-all shadow active:scale-95 text-center">
@@ -1530,6 +1552,9 @@
 
         // Custom select placeholder color styling
         const selectEl = document.getElementById('guest-attendance');
+        const guestCountContainer = document.getElementById('guest-count-container');
+        const guestCountInput = document.getElementById('guest-count');
+
         selectEl.addEventListener('change', () => {
             if (selectEl.value) {
                 selectEl.classList.remove('text-outline-variant');
@@ -1537,6 +1562,15 @@
             } else {
                 selectEl.classList.add('text-outline-variant');
                 selectEl.classList.remove('text-primary');
+            }
+
+            if (selectEl.value === 'Hadir') {
+                guestCountContainer.classList.remove('hidden');
+                guestCountInput.required = true;
+            } else {
+                guestCountContainer.classList.add('hidden');
+                guestCountInput.required = false;
+                guestCountInput.value = '';
             }
         });
 
@@ -1560,6 +1594,7 @@
                     name: row.nama || 'Anonim',
                     wish: row.ucapan || '',
                     attendance: row.kehadiran ? 'Hadir' : 'Tidak Hadir',
+                    jumlahOrang: row.jumlah_orang || '',
                     timestamp: row.created_at
                 }));
             } catch (err) {
@@ -1575,7 +1610,8 @@
                     .insert([{
                         nama: comment.name,
                         ucapan: comment.wish,
-                        kehadiran: comment.attendance === 'Hadir'
+                        kehadiran: comment.attendance === 'Hadir',
+                        jumlah_orang: comment.jumlahOrang || null
                     }])
                     .select();
 
@@ -1626,10 +1662,14 @@
 
                 const badgeBg = c.attendance === 'Hadir' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300' : 'bg-[#ffdad6] text-[#93000a]';
 
+                const attendanceText = c.attendance === 'Hadir' && c.jumlahOrang
+                    ? `Hadir (${c.jumlahOrang})`
+                    : c.attendance;
+
                 commentItem.innerHTML = `
                 <div class="flex items-center flex-wrap gap-2 text-left">
                     <span class="font-bold text-primary font-body-md">${c.name}</span>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded ${badgeBg}">${c.attendance}</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded ${badgeBg}">${attendanceText}</span>
                 </div>
                 <p class="font-body-md text-on-surface-variant leading-relaxed text-left whitespace-pre-wrap">${c.wish}</p>
                 <div class="flex items-center gap-4 text-xs text-on-surface-variant/70 mt-1">
@@ -1650,14 +1690,21 @@
             const nameInput = document.getElementById('guest-name');
             const wishInput = document.getElementById('guest-wish');
             const attendanceInput = document.getElementById('guest-attendance');
+            const guestCountInput = document.getElementById('guest-count');
             const submitBtn = form.querySelector('button[type="submit"]');
 
             const nameVal = nameInput.value.trim();
             const wishVal = wishInput.value.trim();
             const attendanceVal = attendanceInput.value;
+            const guestCountVal = guestCountInput ? guestCountInput.value.trim() : '';
 
             if (!nameVal || !wishVal || !attendanceVal) {
                 alert('Silakan isi semua bidang!');
+                return;
+            }
+
+            if (attendanceVal === 'Hadir' && !guestCountVal) {
+                alert('Silakan isi jumlah orang yang diajak!');
                 return;
             }
 
@@ -1668,7 +1715,8 @@
             const newComment = {
                 name: nameVal,
                 wish: wishVal,
-                attendance: attendanceVal
+                attendance: attendanceVal,
+                jumlahOrang: attendanceVal === 'Hadir' ? guestCountVal : ''
             };
 
             try {
@@ -1686,6 +1734,15 @@
                 attendanceInput.value = '';
                 attendanceInput.classList.add('text-outline-variant');
                 attendanceInput.classList.remove('text-primary');
+
+                if (guestCountInput) {
+                    guestCountInput.value = '';
+                    guestCountInput.required = false;
+                }
+                const guestCountContainer = document.getElementById('guest-count-container');
+                if (guestCountContainer) {
+                    guestCountContainer.classList.add('hidden');
+                }
             } catch (err) {
                 // error handled in saveComment
             } finally {
@@ -1972,16 +2029,44 @@
 
         // Called by the opening cover button
         function openInvitation() {
-            var cover = document.getElementById('opening-cover');
-            cover.classList.add('dismissed');
-            // Start music
-            if (window._musicSetPlaying) {
-                window._musicSetPlaying(true);
+            const isMobileOrPortrait = window.matchMedia("(max-width: 768px), (orientation: portrait)").matches;
+            const videoOverlay = document.getElementById('video-overlay');
+            const introVideo = document.getElementById('intro-video');
+
+            if (isMobileOrPortrait && videoOverlay && introVideo) {
+                // Show video overlay
+                videoOverlay.classList.remove('hidden');
+
+                // Play video
+                introVideo.play().then(() => {
+                    // Video is playing, we do not start background music yet
+                }).catch(err => {
+                    console.error("Video playback failed, dismissing cover.", err);
+                    dismissCover();
+                });
+
+                // Dismiss cover when video ends
+                introVideo.onended = () => {
+                    dismissCover();
+                };
+            } else {
+                dismissCover();
             }
-            // Remove from DOM after animation completes so it doesn't block interaction
-            cover.addEventListener('transitionend', function () {
-                cover.remove();
-            }, { once: true });
+        }
+
+        function dismissCover() {
+            var cover = document.getElementById('opening-cover');
+            if (cover) {
+                cover.classList.add('dismissed');
+                // Start background music
+                if (window._musicSetPlaying) {
+                    window._musicSetPlaying(true);
+                }
+                // Remove from DOM after animation completes so it doesn't block interaction
+                cover.addEventListener('transitionend', function () {
+                    cover.remove();
+                }, { once: true });
+            }
         }
     </script>
 
